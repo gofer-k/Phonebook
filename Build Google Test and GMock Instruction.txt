@@ -1,0 +1,11 @@
+1. Download googletest-master from GitHub
+2. extract archive into directory Tools
+3. cd <Tools/Extracted-dir>/googlemock (it builds gtest as well)
+4. mkdir build folder (to store compiled artifacts for Google test library)
+5. cd build folder from 4
+6. run: cmake .. command to generate build scripts for GMock and GTest static libraries
+7. run make command to build GTest and GMock static libraries. 
+8. Result are: 
+a. libgmock.a and libgmock-main.a in build folder.
+b. gtest subfolder with libgtest.a and libgtest-main.a libraries. 
+c. These libraries will be linked in our projects with our unit tests.

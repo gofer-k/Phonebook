@@ -1,0 +1,13 @@
+Create test project using GTest, GMock.
+
+Theoretical part:
+1. Prepare presentation for Test driven development
+2. Prepare presentation for GTest and GMock
+
+Practical part:
+1. Provide sceleton of CMakeLists.txt for GTest and GMock
+2. Provide code snippet for executing GTest/GMock tests
+3. Provide sceleton of test project to be extended with tests
+4. Implement tests using various GTest, GMock features.
+
+
