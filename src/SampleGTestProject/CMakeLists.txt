@@ -23,7 +23,7 @@ set(IMPLEMENTATION_SOURCES
   
 include_directories("${GTEST_DIR}/include")
 
-link_directories("${GTEST_DIR}/build")
+link_directories("${GTEST_DIR}/Build")
 
 add_executable(${PROJECT_NAME} ${IMPLEMENTATION_SOURCES})
 

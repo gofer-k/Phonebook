@@ -26,8 +26,8 @@ include_directories(
   "${GTEST_DIR}/include")
 
 link_directories(
-  "${GMOCK_DIR}/build"
-  "${GMOCK_DIR}/build/gtest")
+  "${GMOCK_DIR}/Build"
+  "${GMOCK_DIR}/Build/gtest")
 
 add_executable(${PROJECT_NAME} ${IMPLEMENTATION_SOURCES})
 
