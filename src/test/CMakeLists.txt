@@ -1,4 +1,4 @@
-project(SampleGMockTest.unittest)
+project(PhonebookTest.unittest)
 
 # We need thread support
 find_package(Threads REQUIRED)
@@ -12,14 +12,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 set(GMOCK_DIR "$ENV{GMOCK_DIR}")
 set(GTEST_DIR "$ENV{GTEST_DIR}")
 
-MESSAGE( STATUS "Target artifacts will be installed in:         " ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} )
-MESSAGE( STATUS "Using GTest from:         " ${GTEST_DIR} )
-MESSAGE( STATUS "Using GMock from:         " ${GMOCK_DIR} )
+MESSAGE( STATUS "Target artifacts will be installed in: " ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} )
+MESSAGE( STATUS "Using GTest from: " ${GTEST_DIR} )
+MESSAGE( STATUS "Using GMock from: " ${GMOCK_DIR} )
 
 set(IMPLEMENTATION_SOURCES
   # List all implementation files to be built in this project
-  SampleGMockTest.cpp
-  main.cpp)
+  PhonebookTest.cpp
+  testmain.cpp)
 
 include_directories(
   "${GMOCK_DIR}/include"

@@ -1,9 +1,11 @@
-#include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
-namespace SampleGTest
+namespace Phonebook
+{
+namespace Test
 {
 
-class SampleGTest : public ::testing::Test
+class PhonebookTest : public ::testing::Test
 {
 public:
   //! Code here will be called immediately after the constructor (right before each test is executed).
@@ -15,18 +17,19 @@ public:
    
 };
 
-void SampleGTest::SetUp()
+void PhonebookTest::SetUp()
 {}
 
-void SampleGTest::TearDown()
+void PhonebookTest::TearDown()
 {}
 
 // Below are test functions, one for each test case.
 
-TEST_F(SampleGTest, TestCase1)
+TEST_F(PhonebookTest, InitPhonebook)
 {
   // Put test case implemnentation here
   ASSERT_TRUE(false);
 }
 
+}
 }
