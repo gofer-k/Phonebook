@@ -12,6 +12,7 @@ MESSAGE( STATUS "Using GMock from: " ${GMOCK_DIR} )
 set(IMPLEMENTATION_SOURCES
   # List all implementation files to be built in this project
   PhonebookTest.cpp
+  PhonebookAddressTest.cpp
   testmain.cpp)
 
 include_directories(
