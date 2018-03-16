@@ -7,6 +7,7 @@ import os
 #---------- Commanf line arguments definition ------------
 parser=argparse.ArgumentParser()
 parser.add_argument("build", help="target_binary name to build. Can be either an application, library or test")
+parser.add_argument("-m", "--mode", help="Specifies Debug or Release built type. Default is Debug")
 parser.add_argument("-t", "--runtest", help="Execute test", action="store_true")
 parser.add_argument("-f", "--filter", help="Run only tests matching filter")
 
@@ -27,6 +28,10 @@ os.chdir(cmake_folder)
 target_binary = current_folder + "/../bin/" + args.build
 target_cmake = "../.."
 test_filter = ""
+built_type = "Debug"
+
+if args.mode:
+  built_type = args.mode
 
 if args.runtest:
   print "Running test: {}".format(args.build)
@@ -39,7 +44,7 @@ print "Command to execute: {} {}".format(target_binary, test_filter)
 
 try:
   # Generate makefile for given project
-  check_output(["cmake", target_cmake])
+  check_output(["cmake", "-DCMAKE_BUILD_TYPE={}".format(built_type), target_cmake])
 
   # Build project in current folder
   check_output(["cmake", "--build", ".", "--target", args.build])
