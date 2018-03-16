@@ -1,13 +1,6 @@
-project(PhonebookTest.unittest)
-
-# We need thread support
-find_package(Threads REQUIRED)
-
 cmake_minimum_required(VERSION 3.1)
 
-set (CMAKE_CXX_STANDARD 11)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
+project(PhonebookTest.unittest)
 
 set(GMOCK_DIR "$ENV{GMOCK_DIR}")
 set(GTEST_DIR "$ENV{GTEST_DIR}")
@@ -23,17 +16,24 @@ set(IMPLEMENTATION_SOURCES
 
 include_directories(
   "${GMOCK_DIR}/include"
-  "${GTEST_DIR}/include")
+  "${GTEST_DIR}/include"
+  "../Interface")
 
 link_directories(
   "${GMOCK_DIR}/Build"
-  "${GMOCK_DIR}/Build/gtest")
+  "${GMOCK_DIR}/Build/gtest"
+  ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
 
 add_executable(${PROJECT_NAME} ${IMPLEMENTATION_SOURCES})
+
+add_dependencies(${PROJECT_NAME} Phonebook)
 
 target_link_libraries(${PROJECT_NAME}  
   gtest
   gmock
   pthread
+  Phonebook
   # add any thrid party library which is referenced in test defined in this project
 )
+
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${BINARY_DESTINATION_DIRECTORY})
