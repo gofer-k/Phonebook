@@ -6,43 +6,30 @@
 namespace Phonebook
 {
 
+/**
+  Class representing an address in a phonebook.
+  Object of this class should support the following operations:
+  1. Store information about the following address pieces:
+  - house number
+  - street name
+  - city
+  - country
+  - postal code
+  2. Default initialization of its members
+  3. Initialization with passed values
+  4. Copy address object
+  5. Move address object
+  6. Equality comparison
+*/
 class Address
 {
 public:
   Address() = default;
 
-  Address(std::string aHouseNumber, std::string aStreetName, std::string aCity, std::string aCountry,
-          std::string aPostalCode);
-
-  Address(const Address& aOther);
-  Address& operator=(const Address& aOther);
-  Address(Address&& aOther);  
-  Address& operator=(Address&& aOther);
-
-  bool operator==(const Address& aOther) const;
-
-  bool operator!=(const Address& aOther) const;
+  virtual ~Address() = default;
   
-  ~Address() = default;
-
-  void SetHouseNumber(std::string aValue);
-  void SetStreetName(std::string aValue);
-  void SetCity(std::string aValue);
-  void SetCountry(std::string aValue);
-  void SetPostalCode(std::string aValue);
-
-  const std::string& GetHouseNumber() const;
-  const std::string& GetStreetName() const;
-  const std::string& GetCity() const;
-  const std::string& GetCountry() const;
-  const std::string& GetPostalCode() const;
-
 private:
-  std::string iHouseNumber;
-  std::string iStreetName;
-  std::string iCity;
-  std::string iCountry;
-  std::string iPostalCode;
 };
+
 }
 #endif

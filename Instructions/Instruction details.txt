@@ -1,13 +1,13 @@
 Create test project using GTest, GMock.
 
 Theoretical part:
-1. Prepare presentation for Test driven development
-2. Prepare presentation for GTest and GMock
+1. Prepare presentation for Test driven development - done
+2. Prepare presentation for GTest and GMock - in progress
 
 Practical part:
-1. Provide sceleton of CMakeLists.txt for GTest and GMock
-2. Provide code snippet for executing GTest/GMock tests
-3. Provide sceleton of test project to be extended with tests
-4. Implement tests using various GTest, GMock features.
-
-
+1. Provide sceleton of CMakeLists.txt for GTest and GMock - done
+2. Provide code snippet for executing GTest/GMock tests - done
+3. Provide sceleton of test project to be extended with tests - done
+4. Provide instruction for buiding and running Phonebook library 
+   and corresponding tests - in progress
+5. Implement tests using various GTest, GMock features.
