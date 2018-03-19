@@ -23,6 +23,7 @@ namespace
  * 4. Verify setting Contact properties.
  * 5. Verify equality/inequality of Contact objects
  * 6. Verify Contact objects ordering.
+ * 7. Use matchers to improve output messages
  */
 class PhonebookContactTest : public ::testing::Test
 {
