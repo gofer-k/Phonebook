@@ -4,22 +4,64 @@
 
 #include "gmock/gmock.h"
 
+#include <iostream>
 #include <tuple>
 
 namespace Phonebook
 {
+  void DumpAddress(const Address& aAddress, std::ostream* os)
+  {
+    *os << "Address: {" << aAddress.GetHouseNumber() << ", "
+        << aAddress.GetStreetName() << ", "
+        << aAddress.GetCity() << ", "
+        << aAddress.GetCountry() << ", "
+        << aAddress.GetPostalCode() << "}";
+  }
+
+  void DumpPhoneNumbers(const Contact::TPhoneNumbers& aPhoneNumbers, std::ostream* os)
+  {
+    for (const auto& phoneNumber : aPhoneNumbers)
+    {
+      *os << phoneNumber << " ";
+    }
+  }
+  // For better message reporting of a Contact details, 
+  // i.e if a Contact doesn't satisfy an expectation.
+  void PrintTo(const Contact& aContact, std::ostream* os)
+  {
+    *os << "Contact:\nfirstName = " << aContact.GetFirstName()
+        << "\tlastName = " << aContact.GetLastName()
+        << "\t";
+    DumpAddress(aContact.GetAddress(), os);
+
+    *os << "\t";
+    DumpPhoneNumbers(aContact.GetPhoneNumbers(), os);
+    *os << std::endl;
+  }
 namespace Test
 {
+  using namespace ::testing;
 
-namespace
-{
-  Address addr = {"16a", "Zielona", "Warszawa", "Poland", "01-234"};
-  Contact::TPhoneNumbers phoneNumbers = {"42 2345 564", "555 777 999"};
+  namespace
+  {
+    Address addr = {"16a", "Zielona", "Warszawa", "Poland", "01-234"};
+    Contact::TPhoneNumbers phoneNumbers = {"42 2345 564", "555 777 999"};
 
-  const std::tuple<std::string, std::string, Address, Contact::TPhoneNumbers> 
-  expectedContact = std::make_tuple("Franek", "Kowalski", std::move(addr), std::move(phoneNumbers));
-}
+    const std::tuple<std::string, std::string, Address, Contact::TPhoneNumbers> 
+    expectedContact = std::make_tuple("Franek", "Kowalski", std::move(addr), std::move(phoneNumbers));
+  }
 
+/**
+ * Test class for a contact in a phonebook.
+ * It tests at least the following cases:
+ * 1. Valid and invalid Contact initialization (Check Contact type constrains).
+ * 2. Verify copying of a Contact.
+ * 3. Verify moving a Contact from instance to another
+ * 4. Verify setting Contact properties.
+ * 5. Verify equality/inequality of Contact objects
+ * 6. Verify Contact objects ordering.
+ * 7. Use matchers to improve output messages
+ */
 class PhonebookContactTest : public ::testing::Test
 {
 public:
@@ -174,6 +216,31 @@ TEST_F(PhonebookContactTest, SetAddress)
   // Use matcher here to improve error message
   EXPECT_EQ(address, contact.GetAddress());
   EXPECT_TRUE(contact.GetPhoneNumbers().empty());
+}
+
+TEST_F(PhonebookContactTest, OrderContacts)
+{
+  std::string firstName;
+  std::string lastName;
+  Address address;
+
+  std::tie(firstName, lastName, address, std::ignore) = expectedContact;
+
+  Contact contact1 = {firstName, "", address};
+
+  // Check ordering contacts with different first name
+  {
+    Contact contact2 = {"Adam", "Nowak"};
+
+    EXPECT_LT(contact2, contact1);
+  }
+
+  // Check ordering contacts with the same first name
+  {
+    Contact contact2 = {"Franek", "Nowak"};
+
+    EXPECT_LT(contact1, contact2);
+  }
 }
 
 }
