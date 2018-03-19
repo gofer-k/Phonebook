@@ -1,7 +1,5 @@
 #include "../Interface/Address.h"
 
-#include <iostream>
-
 namespace Phonebook
 {
   Address::Address(std::string aHouseNumber, std::string aStreetName, std::string aCity, 
@@ -19,14 +17,10 @@ namespace Phonebook
   , iCity(aOther.iCity)
   , iCountry(aOther.iCountry)
   , iPostalCode(aOther.iPostalCode)
-  {
-    std::cout << "copy ctor\n";
-  }
+  {}
 
   Address& Address::operator=(const Address& aOther)
   {
-    std::cout << "assignment operator\n";
-
     iHouseNumber = aOther.iHouseNumber;
     iStreetName = aOther.iStreetName;
     iCity = aOther.iCity;
@@ -42,13 +36,10 @@ namespace Phonebook
   , iCity(std::move(aOther.iCity))
   , iCountry(std::move(aOther.iCountry))
   , iPostalCode(std::move(aOther.iPostalCode))
-  {
-    std::cout << " move c-tor\n";
-  }
+  {}
 
   Address& Address::operator=(Address&& aOther)
   {
-    std::cout << "move assignment operator\n";
     if (this != &aOther)
     {
       iHouseNumber = std::move(aOther.iHouseNumber);
