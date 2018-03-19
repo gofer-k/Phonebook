@@ -13,6 +13,7 @@ set(IMPLEMENTATION_SOURCES
   # List all implementation files to be built in this project
   PhonebookTest.cpp
   PhonebookAddressTest.cpp
+  PhonebookContactTest.cpp
   testmain.cpp)
 
 include_directories(

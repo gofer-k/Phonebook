@@ -3,6 +3,7 @@ project(Phonebook)
 
 add_library(${PROJECT_NAME} STATIC
   Implementation/Address.cpp
+  Implementation/Contact.cpp
 )
 
 target_include_directories(${PROJECT_NAME} 
