@@ -1,5 +1,6 @@
-#include "gmock/gmock.h"
 #include "Address.h"
+
+#include "gmock/gmock.h"
 
 #include <tuple>
 
@@ -11,8 +12,13 @@ namespace Test
 namespace
 {
   std::tuple<std::string, std::string, std::string, std::string, std::string> 
-  expectedAddress = std::make_tuple("16a", "Zielona", "Warszawa", "Poland", "01-234");  
+  expectedAddress = std::make_tuple("16a", "Zielona", "Warszawa", "Poland", "01-234");
 }
+
+using ::testing::Matcher;
+using ::testing::MatchesRegex;
+using ::testing::Property;
+using ::testing::Values;
 
 class PhonebookAddressTest : public ::testing::Test
 {
@@ -155,6 +161,31 @@ TEST_F(PhonebookAddressTest, SetPostalCode)
   addr.SetPostalCode(postalCode);
   EXPECT_EQ(postalCode, addr.GetPostalCode());
 }
+
+class PostalCodeValidationTest : 
+  public PhonebookAddressTest, public ::testing::WithParamInterface<std::string>
+{};
+
+TEST_P(PostalCodeValidationTest, Validate)
+{ 
+  // Matcher to validate given postal code as string (tested value)
+  const Matcher<const std::string&> postalCodeMatcher = MatchesRegex("[0-9]{2}-[0-9]{3}");
+
+  // Matcher to validate postal code format stored in Address
+  const Matcher<const Address&> addressPostalCodeMatcher = 
+    Property(&Address::GetPostalCode, postalCodeMatcher);
+
+  const auto& inputPostalCode = GetParam();
+
+  Address addr;
+  addr.SetPostalCode(inputPostalCode);
+
+  EXPECT_EQ(addressPostalCodeMatcher.Matches(addr), postalCodeMatcher.Matches(inputPostalCode));
+}
+
+INSTANTIATE_TEST_CASE_P(PostalCodeFormat,
+                        PostalCodeValidationTest,
+                        Values("01-234", "1-123", "11-22", "12-3435", "33 432", "21343"));
 
 }
 }

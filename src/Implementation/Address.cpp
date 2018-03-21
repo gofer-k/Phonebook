@@ -1,4 +1,6 @@
-#include "../Interface/Address.h"
+#include "Address.h"
+
+#include <regex>
 
 namespace Phonebook
 {
@@ -87,7 +89,14 @@ namespace Phonebook
 
   void Address::SetPostalCode(std::string aValue)
   {
-    iPostalCode = std::move(aValue);
+    static std::regex regexString("[0-9]{2}-[0-9]{3}"); // postal code format valid in Poland
+    std::smatch match;
+
+    if (std::regex_match(aValue, match, regexString))
+    {
+      iPostalCode = std::move(aValue);
+    }
+    
   }
 
   const std::string& Address::GetHouseNumber() const
