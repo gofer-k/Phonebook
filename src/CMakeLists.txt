@@ -4,12 +4,13 @@ project(Phonebook)
 add_library(${PROJECT_NAME} STATIC
   Implementation/Address.cpp
   Implementation/Contact.cpp
+  Implementation/Phonebook.cpp
 )
 
 target_include_directories(${PROJECT_NAME} 
   # EXpose Interface folder as public library interface
   PUBLIC Interface
-  # hide library implementation from ouside
+  # hide library implementation from outside
   PRIVATE Implementation)
 
 target_link_libraries(${PROJECT_NAME}

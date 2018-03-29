@@ -1,3 +1,6 @@
+
+#include "Phonebook.h"
+
 #include "gmock/gmock.h"
 
 namespace Phonebook
@@ -31,5 +34,44 @@ TEST_F(PhonebookTest, InitPhonebook)
   ASSERT_TRUE(false);
 }
 
+TEST_F(PhonebookTest, AddContact)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, RemoveContact)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, UpdateContact)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, ListContacts)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, FindContactsMatchingName)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, FindContactsMatchingPhoneNumber)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, FindContactsMatchingAddressPiece)
+{
+  ASSERT_TRUE(false);
+}
+
+TEST_F(PhonebookTest, FindContactsMatchingMultipleFields)
+{
+  ASSERT_TRUE(false);
+}
 }
 }

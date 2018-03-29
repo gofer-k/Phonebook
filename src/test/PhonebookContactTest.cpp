@@ -4,7 +4,7 @@
 
 #include "gmock/gmock.h"
 
-#include <iostream>
+#include <iostream> // for custom formatting of Address and Contact content in error message
 #include <tuple>
 
 namespace Phonebook
