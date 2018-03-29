@@ -1,4 +1,4 @@
-#include "../Interface/Contact.h"
+#include "Contact.h"
 
 namespace Phonebook
 {
