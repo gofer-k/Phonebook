@@ -1,13 +1,19 @@
 Create test project using GTest, GMock.
 
 Theoretical part:
-1. Prepare presentation for Test driven development
-2. Prepare presentation for GTest and GMock
+1. Prepare presentation for Test driven development - done
+2. Prepare presentation for GTest and GMock - in progress
 
 Practical part:
-1. Provide sceleton of CMakeLists.txt for GTest and GMock
-2. Provide code snippet for executing GTest/GMock tests
-3. Provide sceleton of test project to be extended with tests
-4. Implement tests using various GTest, GMock features.
+1. Provide skeleton of CMakeLists.txt for GTest and GMock - done
+2. Provide code snippet for executing GTest/GMock tests - done
+3. Provide skeleton of test project to be extended with tests - done
+4. Implement tests using various GTest, GMock features. - in progress
+a. Use custom formatter for user defined type to improve messages reported by GTest. 
+   Write a failing condition comparing Address and Contact objects to use how regitered 
+   custom formatter impacts reported messages. - done
+b. Add ON_CALL, EXPECT_CALL expectations where possible (PhonebookTest, *ContactTest)
+c. Add validation of postal code format by using a matcher - done
+d. Consider adding parameterized test as an exercise - done
 
 
